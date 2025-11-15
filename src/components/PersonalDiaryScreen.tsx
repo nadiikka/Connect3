@@ -100,7 +100,7 @@ const checkInEntries: CheckInEntry[] = [
   }
 ];
 
-export function PersonalDiaryScreen({ onMenuClick, onTextSizeToggle, textSizeMultiplier = 1 }: { onMenuClick?: () => void; onTextSizeToggle?: () => void; textSizeMultiplier?: number }) {
+export default function PersonalDiaryScreen({ onMenuClick, onTextSizeToggle, textSizeMultiplier = 1 }: { onMenuClick?: () => void; onTextSizeToggle?: () => void; textSizeMultiplier?: number }) {
   const [entries, setEntries] = useState(diaryEntries);
   const [shareWithFamily, setShareWithFamily] = useState(true);
   const [activeTab, setActiveTab] = useState<'activity' | 'checkin'>('activity');

@@ -2,7 +2,7 @@ import { Settings, Bell, Eye, Volume2, Info, ChevronRight, ToggleLeft, ToggleRig
 import { useState } from 'react';
 import { ScreenHeader } from './ScreenHeader';
 
-export function SettingsScreen({ onMenuClick, onTextSizeToggle, textSizeMultiplier = 1 }: { onMenuClick?: () => void; onTextSizeToggle?: () => void; textSizeMultiplier?: number }) {
+export default function SettingsScreen({ onMenuClick, onTextSizeToggle, textSizeMultiplier = 1 }: { onMenuClick?: () => void; onTextSizeToggle?: () => void; textSizeMultiplier?: number }) {
   const [notifications, setNotifications] = useState({
     reminders: true,
     familyPhotos: true,

@@ -2,7 +2,7 @@ import { User, Phone, Heart, Edit, Save, Camera } from 'lucide-react';
 import { useState } from 'react';
 import { ScreenHeader } from './ScreenHeader';
 
-export function ProfileScreen({ onMenuClick, onTextSizeToggle, textSizeMultiplier = 1 }: { onMenuClick?: () => void; onTextSizeToggle?: () => void; textSizeMultiplier?: number }) {
+export default function ProfileScreen({ onMenuClick, onTextSizeToggle, textSizeMultiplier = 1 }: { onMenuClick?: () => void; onTextSizeToggle?: () => void; textSizeMultiplier?: number }) {
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState({
     name: 'Robert Johnson',

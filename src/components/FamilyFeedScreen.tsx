@@ -73,7 +73,7 @@ const initialPosts: FeedPost[] = [
   }
 ];
 
-export function FamilyFeedScreen({ onMenuClick, onTextSizeToggle, textSizeMultiplier = 1 }: { onMenuClick?: () => void; onTextSizeToggle?: () => void; textSizeMultiplier?: number }) {
+export default function FamilyFeedScreen({ onMenuClick, onTextSizeToggle, textSizeMultiplier = 1 }: { onMenuClick?: () => void; onTextSizeToggle?: () => void; textSizeMultiplier?: number }) {
   const [posts, setPosts] = useState(initialPosts);
   const [commentText, setCommentText] = useState<{[key: string]: string}>({});
   const [showComments, setShowComments] = useState<{[key: string]: boolean}>({});
