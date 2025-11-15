@@ -56,7 +56,7 @@ function App() {
     <div className="min-h-screen flex flex-col">
   <div className="flex-1 overflow-y-auto" style={{ paddingBottom: '130px' }}>
     <Routes>
-      <Route path="/" element={<Navigate to="/login" />} />
+      <Route path="/" element={<LoginScreen />} />
       <Route
         path="/home"
         element={

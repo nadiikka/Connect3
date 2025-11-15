@@ -1,0 +1,5 @@
+{
+  "appId": "com.connect3.app",
+  "appName": "Connect3",
+  "webDir": "dist"
+}
