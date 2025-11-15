@@ -111,15 +111,15 @@ export function RemindersScreen({ onMenuClick, onTextSizeToggle, textSizeMultipl
               {/* Action Button */}
               <button
                 onClick={() => markAsTaken(reminder.id)}
-                className={`w-full rounded-2xl p-5 text-xl font-bold transition-all active:scale-95 flex items-center justify-center gap-3 ${
+                className={`w-full rounded-3xl p-6 text-2xl font-bold transition-all active:scale-98 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl ${
                   reminder.taken
-                    ? 'bg-gray-300 text-gray-600 hover:bg-gray-400'
-                    : 'bg-green-500 text-white hover:bg-green-600'
+                    ? 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    : 'bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700'
                 }`}
               >
                 {reminder.taken ? (
                   <>
-                    <Check className="w-8 h-8" strokeWidth={3} />
+                    <Check className="w-10 h-10" strokeWidth={3} />
                     Taken
                   </>
                 ) : (
@@ -143,32 +143,32 @@ export function RemindersScreen({ onMenuClick, onTextSizeToggle, textSizeMultipl
 
         {/* Simple Add Form (placeholder) */}
         {showAddForm && (
-          <div className="bg-white rounded-3xl p-8 shadow-lg border-2 border-purple-200">
-            <h3 className="text-2xl font-bold text-gray-800 mb-6">New Reminder</h3>
+          <div className="bg-white rounded-3xl p-8 shadow-2xl border-2 border-purple-200">
+            <h3 className="text-3xl font-bold text-gray-800 mb-6">New Reminder</h3>
             <div className="space-y-6">
               <div>
-                <label className="block text-xl font-semibold text-gray-700 mb-3">
+                <label className="block text-xl font-semibold text-gray-800 mb-3">
                   Medication Name
                 </label>
                 <input
                   type="text"
                   placeholder="Enter medication name"
-                  className="w-full text-xl p-4 border-2 border-gray-300 rounded-2xl focus:border-purple-500 focus:outline-none"
+                  className="w-full text-2xl p-6 border-4 border-gray-300 rounded-2xl focus:border-purple-500 focus:outline-none transition-colors"
                 />
               </div>
               <div>
-                <label className="block text-xl font-semibold text-gray-700 mb-3">
+                <label className="block text-xl font-semibold text-gray-800 mb-3">
                   Time
                 </label>
                 <input
                   type="time"
-                  className="w-full text-xl p-4 border-2 border-gray-300 rounded-2xl focus:border-purple-500 focus:outline-none"
+                  className="w-full text-3xl p-5 border-4 border-gray-300 rounded-2xl focus:border-purple-500 focus:outline-none transition-colors"
                 />
               </div>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-4">
                 <button
                   onClick={() => setShowAddForm(false)}
-                  className="bg-gray-200 text-gray-700 rounded-2xl p-4 text-xl font-bold hover:bg-gray-300 transition-colors"
+                  className="bg-gray-200 text-gray-700 rounded-2xl p-5 text-xl font-bold hover:bg-gray-300 transition-all active:scale-98"
                 >
                   Cancel
                 </button>
@@ -177,7 +177,7 @@ export function RemindersScreen({ onMenuClick, onTextSizeToggle, textSizeMultipl
                     alert('Reminder added!');
                     setShowAddForm(false);
                   }}
-                  className="bg-purple-500 text-white rounded-2xl p-4 text-xl font-bold hover:bg-purple-600 transition-colors"
+                  className="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-2xl p-5 text-xl font-bold hover:shadow-lg transition-all active:scale-98"
                 >
                   Save
                 </button>
