@@ -1,7 +1,7 @@
 import { Heart, MessageCircle, Clock, Send, Mic, Image as ImageIcon } from 'lucide-react';
 import { useState } from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { ScreenHeader } from './ScreenHeader';
+import AppHeader from "./AppHeader";
 
 interface FeedPost {
   id: string;
@@ -124,13 +124,7 @@ export default function FamilyFeedScreen({ onMenuClick, onTextSizeToggle, textSi
 
   return (
     <div className="max-w-lg mx-auto">
-      {/* Header */}
-      <ScreenHeader
-        onMenuClick={onMenuClick}
-        onTextSizeToggle={onTextSizeToggle}
-        textSizeMultiplier={textSizeMultiplier}
-        showTasksButton={false}
-      />
+      <AppHeader onMenuClick={onMenuClick} onTextSizeToggle={onTextSizeToggle} textSizeMultiplier={textSizeMultiplier} />
 
       <div className="p-6 space-y-6">
         {/* Page Title */}

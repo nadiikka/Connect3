@@ -5,9 +5,19 @@ import {
   Mic,
   Search,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { ScreenHeader } from "./ScreenHeader";
+import AppHeader from "./AppHeader";
+
+interface ApiEvent {
+  id: string;
+  name: { fi?: string; en?: string; ru?: string };
+  description?: { fi?: string; en?: string; ru?: string };
+  images?: { url: string }[];
+  location_extra_info?: { fi?: string; en?: string };
+  start_time?: string;
+  end_time?: string;
+}
 
 interface Event {
   id: string;
@@ -22,150 +32,138 @@ interface Event {
   seniorFriendly: boolean;
 }
 
-const events: Event[] = [
-  {
-    id: "1",
-    title: "Senior Yoga Class",
-    type: "Fitness",
-    location: "Community Center",
-    distance: "0.5 miles away",
-    date: "Today",
-    time: "10:00 AM",
-    photo:
-      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b2dhJTIwc2VuaW9yfGVufDF8fHx8MTczNjc0NTYzMnww&ixlib=rb-4.1.0&q=80&w=1080",
-    description:
-      "Gentle yoga designed for seniors. All levels welcome.",
-    seniorFriendly: true,
-  },
-  {
-    id: "2",
-    title: "Knitting Circle",
-    type: "Social",
-    location: "Public Library",
-    distance: "1.2 miles away",
-    date: "Tomorrow",
-    time: "2:00 PM",
-    photo:
-      "https://images.unsplash.com/photo-1619773669837-d3fe2d049dc5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrbml0dGluZyUyMGdyb3VwfGVufDB8fHx8MTczNjc0NTY1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
-    description:
-      "Weekly gathering for knitting enthusiasts. Bring your project!",
-    seniorFriendly: true,
-  },
-  {
-    id: "3",
-    title: "Farmers Market",
-    type: "Shopping",
-    location: "Town Square",
-    distance: "0.8 miles away",
-    date: "Saturday",
-    time: "8:00 AM",
-    photo:
-      "https://images.unsplash.com/photo-1488459716781-31db52582fe9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXJtZXJzJTIwbWFya2V0fGVufDB8fHx8MTczNjc0NTY3NHww&ixlib=rb-4.1.0&q=80&w=1080",
-    description:
-      "Fresh local produce and handmade goods. Wheelchair accessible.",
-    seniorFriendly: true,
-  },
-  {
-    id: "4",
-    title: "Water Aerobics",
-    type: "Fitness",
-    location: "Recreation Center Pool",
-    distance: "2.1 miles away",
-    date: "Monday & Wednesday",
-    time: "11:00 AM",
-    photo:
-      "https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXRlciUyMGFlcm9iaWNzfGVufDB8fHx8MTczNjc0NTY5MHww&ixlib=rb-4.1.0&q=80&w=1080",
-    description:
-      "Low-impact exercise in the pool. Great for joints!",
-    seniorFriendly: true,
-  },
-  {
-    id: "5",
-    title: "Book Club",
-    type: "Social",
-    location: "Coffee Shop",
-    distance: "1.5 miles away",
-    date: "Next Thursday",
-    time: "3:00 PM",
-    photo:
-      "https://images.unsplash.com/photo-1507842217343-583bb7270b66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxib29rJTIwY2x1YnxlbnwwfHx8fDE3MzY3NDU3MDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
-    description:
-      "Monthly book discussion. This month: classic literature.",
-    seniorFriendly: true,
-  },
-  {
-    id: "6",
-    title: "Community Lunch",
-    type: "Social",
-    location: "Senior Center",
-    distance: "0.3 miles away",
-    date: "Today",
-    time: "12:00 PM",
-    photo:
-      "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjBsdW5jaHxlbnwwfHx8fDE3MzY3NDU3MjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-    description:
-      "Join neighbors for a shared meal and conversation.",
-    seniorFriendly: true,
-  },
-];
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+}
 
-export default function EventsScreen({ onMenuClick, onTextSizeToggle, textSizeMultiplier = 1 }: { onMenuClick?: () => void; onTextSizeToggle?: () => void; textSizeMultiplier?: number }) {
-  const [isListening, setIsListening] = useState(false);
+export default function EventsScreen({ onMenuClick, 
+  onTextSizeToggle, 
+  textSizeMultiplier = 1 ,
+}: { onMenuClick?: () => void; 
+  onTextSizeToggle?: () => void; 
+  textSizeMultiplier?: number;
+ }) {
 
-  const handleVoiceSearch = () => {
-    setIsListening(true);
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    // Simulate voice recognition
-    setTimeout(() => {
-      const queries = [
-        "events today",
-        "fitness classes",
-        "social events",
-      ];
-    }, 2000);
-  };
+  useEffect(() => {
+    async function fetchEvents() {
+      try {
+        const today = new Date();
+        const nextMonth = new Date();
+        nextMonth.setDate(today.getMonth() + 1);
+
+        const startDate = today.toISOString().split("T")[0];
+        const endDate = nextMonth.toISOString().split("T")[0];
+
+        const url = `https://api.hel.fi/linkedevents/v1/event/?start=${startDate}&end=${endDate}`;
+        const response = await fetch(url);
+        const data = await response.json();
+
+        
+      if (!data?.data) {
+        console.warn("No events data found");
+        setEvents([]);
+        return;
+      }
+        const seniorKeywords = ["senior", "eläke", "ikääntyneet", "60+", "70+"];
+
+        const mapped: Event[] = data.data
+          .filter((ev: ApiEvent) => {
+            const name = `${ev.name?.fi ?? ""} ${ev.name?.en ?? ""} ${ev.name?.ru ?? ""}`.toLowerCase();
+            return seniorKeywords.some(keyword => name.includes(keyword.toLowerCase()));
+          })
+          .map((ev: ApiEvent) => {
+            const title =
+            ev.name?.fi || ev.name?.en || ev.name?.ru || "Untitled event";
+
+            let start: Date | null = null;
+            if (ev.start_time) {
+              const parsed = new Date(ev.start_time);
+              if (!isNaN(parsed.getTime())) start = parsed;
+            }
+            const date =
+              start?.toLocaleDateString("fi-FI") || "Date unknown";
+            const time =
+              start?.toLocaleTimeString("fi-FI", {
+                hour: "2-digit",
+                minute: "2-digit",
+              }) || "";
+
+            return {
+              id: ev.id,
+              title,
+              type: "Event",
+              location:
+                ev.location_extra_info?.fi ||
+                ev.location_extra_info?.en ||
+                "Location unknown",
+              distance: "—",
+              date,
+              time,
+              photo: ev.images?.[0]?.url || "",
+              description: stripHtml(
+              ev.description?.fi ||
+              ev.description?.en ||
+              ev.description?.ru ||
+              "No description"
+            ),
+              seniorFriendly: true,
+            };
+          });
+
+        setEvents(mapped);
+      } catch (e) {
+        console.error("Error loading events:", e);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchEvents();
+  }, []);
 
   const handleAddReminder = (event: Event) => {
     alert(
-      `Adding reminder for "${event.title}" on ${event.date} at ${event.time}`,
+      `Adding reminder for "${event.title}" on ${event.date} at ${event.time}`
     );
   };
 
   return (
     <div className="max-w-lg mx-auto">
-      {/* Header */}
-      <ScreenHeader
-        onMenuClick={onMenuClick}
-        onTextSizeToggle={onTextSizeToggle}
-        textSizeMultiplier={textSizeMultiplier}
-        showTasksButton={false}
-      />
+      <AppHeader onMenuClick={onMenuClick} onTextSizeToggle={onTextSizeToggle} textSizeMultiplier={textSizeMultiplier} />
 
       <div className="p-6 space-y-6">
-        {/* Page Title */}
+
         <div className="flex items-center gap-4">
-          <Calendar className="w-10 h-10 text-green-600" strokeWidth={2.5} />
+          <Calendar className="w-10 h-10 text-green-600"
+strokeWidth={2.5} />
           <div>
-            <h1 className="text-3xl font-bold text-gray-800">Events Nearby</h1>
-            <p className="text-xl text-gray-600">Local activities & community gatherings</p>
+            <h1 className="text-3xl font-bold text-gray-800">Events in Helsinki</h1>
           </div>
         </div>
 
-        {/* Events List */}
+        {loading && <p className="text-xl text-gray-500">Loading events...</p>}
+
+        {!loading && events.length === 0 && (
+          <p className="text-xl text-gray-700">
+            No senior-friendly events found for selected dates.
+          </p>
+        )}
+
         <div className="space-y-4">
           {events.map((event) => (
             <div
               key={event.id}
               className="bg-white rounded-3xl shadow-lg border-2 border-gray-100 overflow-hidden"
             >
-              {/* Event Image */}
               <ImageWithFallback
                 src={event.photo}
                 alt={event.title}
-                className="w-full h-48 object-cover"
+                className="w-full h-48 object-cover bg-gray-100"
               />
 
-              {/* Event Info */}
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
@@ -176,11 +174,9 @@ export default function EventsScreen({ onMenuClick, onTextSizeToggle, textSizeMu
                       <span className="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-lg font-semibold">
                         {event.type}
                       </span>
-                      {event.seniorFriendly && (
-                        <span className="bg-green-100 text-green-800 px-4 py-1 rounded-full text-lg font-semibold">
-                          ✓ Senior Friendly
-                        </span>
-                      )}
+                      <span className="bg-green-100 text-green-800 px-4 py-1 rounded-full text-lg font-semibold">
+                        ✓ Senior Friendly
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -191,14 +187,10 @@ export default function EventsScreen({ onMenuClick, onTextSizeToggle, textSizeMu
 
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center gap-3 text-gray-600">
-                    <MapPin
-                      className="w-6 h-6 text-green-600"
-                      strokeWidth={2.5}
-                    />
-                    <span className="text-xl">
-                      {event.location} • {event.distance}
-                    </span>
+                    <MapPin className="w-6 h-6 text-green-600" strokeWidth={2.5} />
+                    <span className="text-xl">{event.location}</span>
                   </div>
+
                   <div className="flex items-center gap-3 text-gray-600">
                     <Calendar
                       className="w-6 h-6 text-blue-600"
@@ -210,7 +202,6 @@ export default function EventsScreen({ onMenuClick, onTextSizeToggle, textSizeMu
                   </div>
                 </div>
 
-                {/* Action Button */}
                 <button
                   onClick={() => handleAddReminder(event)}
                   className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white rounded-2xl p-5 text-2xl font-bold hover:shadow-lg transition-all active:scale-98 flex items-center justify-center gap-3"

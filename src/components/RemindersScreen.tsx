@@ -1,6 +1,6 @@
 import { Pill, Clock, Check, Plus } from 'lucide-react';
 import { useState } from 'react';
-import { ScreenHeader } from './ScreenHeader';
+import AppHeader from './AppHeader';
 
 interface Reminder {
   id: string;
@@ -54,11 +54,10 @@ export default function RemindersScreen({ onMenuClick, onTextSizeToggle, textSiz
   return (
     <div className="max-w-lg mx-auto">
       {/* Header */}
-      <ScreenHeader
+      <AppHeader
         onMenuClick={onMenuClick}
         onTextSizeToggle={onTextSizeToggle}
         textSizeMultiplier={textSizeMultiplier}
-        showTasksButton={false}
       />
 
       <div className="p-6 space-y-6">

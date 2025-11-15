@@ -1,6 +1,6 @@
 import { BookOpen, Phone, Video, MessageCircle, Image, Footprints, Share2, Lock, MessageSquare, CheckCircle } from 'lucide-react';
 import { useState } from 'react';
-import { ScreenHeader } from './ScreenHeader';
+import AppHeader from './AppHeader';
 
 interface DiaryEntry {
   id: string;
@@ -131,12 +131,7 @@ export default function PersonalDiaryScreen({ onMenuClick, onTextSizeToggle, tex
   return (
     <div className="max-w-lg mx-auto">
       {/* Header */}
-      <ScreenHeader
-        onMenuClick={onMenuClick}
-        onTextSizeToggle={onTextSizeToggle}
-        textSizeMultiplier={textSizeMultiplier}
-        showTasksButton={false}
-      />
+      <AppHeader onMenuClick={onMenuClick} onTextSizeToggle={onTextSizeToggle} textSizeMultiplier={textSizeMultiplier} />
 
       <div className="p-6 space-y-6">
         {/* Page Title */}

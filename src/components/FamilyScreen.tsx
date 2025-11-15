@@ -1,6 +1,6 @@
 import { Phone, Video, MessageSquare, UserPlus, Users, X, Heart } from 'lucide-react';
 import { useState } from 'react';
-import { ScreenHeader } from './ScreenHeader';
+import AppHeader from './AppHeader';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface Contact {
@@ -143,11 +143,10 @@ export default function FamilyScreen({ onMenuClick, onTextSizeToggle, textSizeMu
   return (
     <div className="max-w-lg mx-auto">
       {/* Header */}
-      <ScreenHeader
+      <AppHeader
         onMenuClick={onMenuClick}
         onTextSizeToggle={onTextSizeToggle}
         textSizeMultiplier={textSizeMultiplier}
-        showTasksButton={false}
       />
 
       <div className="p-6 space-y-6">

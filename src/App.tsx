@@ -54,7 +54,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-  <div className="flex-1 overflow-y-auto pb-40">
+  <div className="flex-1 overflow-y-auto" style={{ paddingBottom: '130px' }}>
     <Routes>
       <Route path="/" element={<Navigate to="/login" />} />
       <Route
@@ -68,14 +68,17 @@ function App() {
           />
         }
       />
-      <Route path="/family" element={<FamilyScreen />} />
-      <Route path="/events" element={<EventsScreen />} />
-      <Route path="/reminders" element={<RemindersScreen />} />
+      <Route path="/family" element={<FamilyScreen onMenuClick={handleMenuClick} onTextSizeToggle={handleTextSizeToggle} textSizeMultiplier={textSizeMultiplier} />} />
+      <Route path="/events" element={<EventsScreen onMenuClick={handleMenuClick} onTextSizeToggle={handleTextSizeToggle} textSizeMultiplier={textSizeMultiplier} />} />
+      <Route path="/reminders" element={<RemindersScreen onMenuClick={handleMenuClick} onTextSizeToggle={handleTextSizeToggle} textSizeMultiplier={textSizeMultiplier} />} />
       <Route path="/voice" element={<VoiceControlMode />} />
-      <Route path="/feed"  element={<FamilyFeedScreen
-        onMenuClick={() => console.log('Menu clicked')}
-        onTextSizeToggle={() => console.log('Text size toggle')}
-        textSizeMultiplier={1}/>}/>
+      <Route path="/feed" element={
+        <FamilyFeedScreen
+          onMenuClick={handleMenuClick}
+          onTextSizeToggle={handleTextSizeToggle}
+          textSizeMultiplier={textSizeMultiplier}
+        />
+      }/>
       <Route
     path="/diary"
     element={
