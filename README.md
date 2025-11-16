@@ -1,11 +1,45 @@
 
-  # Senior Community Connection App
+  # Connect3
 
-  This is a code bundle for Senior Community Connection App. The original project is available at https://www.figma.com/design/NRDBJB5MPbB8VpCv66a2Mx/Senior-Community-Connection-App.
+  Connect3 bridges generations using AI, creating meaningful social connections and promoting active lifestyles for older adults. Our solution focuses on empowering older adults while engaging their younger family members, using AI as a facilitator rather than a replacement for human interaction.
 
-  ## Running the code
+Problem
 
-  Run `npm i` to install the dependencies.
+Many older adults experience social isolation, loneliness, and reduced physical activity, which can negatively impact both mental and physical health. While existing AI assistants can answer questions or track information, they rarely enhance human relationships or motivate active engagement.
 
-  Run `npm run dev` to start the development server.
+Solution
+
+Connect3 leverages AI to proactively facilitate interactions and activities between older adults and younger generations. The platform combines a voice-based assistant for older adults with a web/mobile dashboard for their family, enabling shared experiences and meaningful connections.
+
+Key features include:
+	1.	Elderly Voice Interaction
+	•	The AI interacts naturally via a phone-call-style interface.
+	•	Uses slow, clear speech and large text for accessibility.
+	•	Prompts daily activities, encourages movement, and shares relevant family updates.
+	2.	Family Dashboard
+	•	Summarizes older adults’ daily activities, mood, and engagement.
+	•	Allows younger family members to send personalized messages, challenges, or invitations to shared activities.
+	3.	Shared Micro-Challenges
+	•	Encourages collaborative activities like step-count competitions, storytelling prompts, or virtual games.
+	•	Motivates both generations to interact regularly in fun and meaningful ways.
+	4.	Proactive Engagement
+	•	AI nudges older adults and their families with gentle reminders to check in or participate in activities.
+	•	Ensures interactions are timely, context-aware, and personalized to maintain natural communication.
+	5.	Privacy & Safety
+	•	Only relevant information is shared within the family.
+	•	No sensitive personal data is exposed; interactions are secure and user-friendly.
+
+Impact
+
+Connect3 strengthens intergenerational relationships, promotes physical and mental well-being, and empowers older adults to live more independent, socially connected lives. By focusing on human-centered design, our platform demonstrates how AI can enhance human connection without replacing it, bridging gaps across generations.
+
+Prototype
+
+For the hackathon, we built a click-through demo simulating the AI-elderly interactions and family dashboard. Users can experience:
+	•	AI check-ins with older adults
+	•	Activity prompts and shared micro-challenges
+	•	Family dashboard with updates and messaging
+	•	Summary of engagement and wellbeing metrics
+
+Connect3 demonstrates a scalable, ethical, and innovative approach to using AI to foster meaningful human connections across generations.
   
