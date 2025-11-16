@@ -3,6 +3,8 @@
 
   Connect3 bridges generations using AI, creating meaningful social connections and promoting active lifestyles for older adults. Our solution focuses on empowering older adults while engaging their younger family members, using AI as a facilitator rather than a replacement for human interaction.
 
+  [![Download APK](https://img.shields.io/badge/Download-APK-blue?style=for-the-badge)](https://github.com/nadiikka/Connect3/releases/latest)
+
 Problem
 
 Many older adults experience social isolation, loneliness, and reduced physical activity, which can negatively impact both mental and physical health. While existing AI assistants can answer questions or track information, they rarely enhance human relationships or motivate active engagement.
