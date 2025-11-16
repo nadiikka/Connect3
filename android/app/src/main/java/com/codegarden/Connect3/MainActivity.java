@@ -1,4 +1,4 @@
-package com.connect3.app;
+package com.codegarden.Connect3;
 
 import com.getcapacitor.BridgeActivity;
 

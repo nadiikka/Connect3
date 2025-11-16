@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "com.connect3.app"
+    namespace "com.codegarden.Connect3"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.connect3.app"
+        applicationId "com.codegarden.Connect3"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

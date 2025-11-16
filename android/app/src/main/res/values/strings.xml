@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">Connect3</string>
     <string name="title_activity_main">Connect3</string>
-    <string name="package_name">com.connect3.app</string>
-    <string name="custom_url_scheme">com.connect3.app</string>
+    <string name="package_name">com.codegarden.Connect3</string>
+    <string name="custom_url_scheme">com.codegarden.Connect3</string>
 </resources>
