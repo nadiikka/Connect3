@@ -1,5 +1,5 @@
 {
-  "appId": "com.connect3.app",
+  "appId": "com.codegarden.connect3",
   "appName": "Connect3",
   "webDir": "dist"
 }

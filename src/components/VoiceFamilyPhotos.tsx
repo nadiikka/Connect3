@@ -41,7 +41,7 @@ const photos: PhotoPost[] = [
     authorName: 'Sarah',
     authorPhoto: 'https://images.unsplash.com/photo-1630939687530-241d630735df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3VuZyUyMHdvbWFuJTIwc21pbGluZyUyMHBvcnRyYWl0fGVufDF8fHx8MTc2MzExODIzMnww&ixlib=rb-4.1.0&q=80&w=1080',
     photo: 'https://images.unsplash.com/photo-1664289597477-d5b2d266169d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaXJ0aGRheSUyMGNha2UlMjBjZWxlYnJhdGlvbnxlbnwxfHx8fDE3NjMxNzA5OTJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    caption: "Dad's birthday celebration! 🎉",
+    caption: "Dad's birthday celebration!",
     isLiked: true
   },
   {

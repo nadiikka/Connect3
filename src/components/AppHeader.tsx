@@ -217,8 +217,7 @@ export default function AppHeader({ onMenuClick, onTextSizeToggle, textSizeMulti
                   <p className="text-lg text-gray-600">
                     Streak
                   </p>
-                  <p className="text-3xl font-bold text-amber-600">
-                    🔥 {currentStreak}
+                  <p className="text-3xl font-bold text-amber-600">{currentStreak}
                   </p>
                 </div>
                 <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl px-6 py-4 border-2 border-purple-200">
