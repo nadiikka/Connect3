@@ -3,7 +3,9 @@
 
   Connect3 bridges generations using AI, creating meaningful social connections and promoting active lifestyles for older adults. Our solution focuses on empowering older adults while engaging their younger family members, using AI as a facilitator rather than a replacement for human interaction.
 
-  [![Download APK](https://img.shields.io/badge/Download-APK-blue?style=for-the-badge)](https://github.com/nadiikka/Connect3/releases/latest)
+[<kbd style="padding:12px 20px; font-size:16px; background:#4A90E2; color:white; border-radius:8px;">
+ 📥 Download APK 
+</kbd>](https://github.com/nadiikka/Connect3/releases/latest)
 
 Problem
 
